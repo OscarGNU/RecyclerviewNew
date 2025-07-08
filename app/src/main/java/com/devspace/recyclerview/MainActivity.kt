@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         val ivGrid = findViewById<ImageView>(R.id.iv_grid)
         val adapter = ContactListAdapter()
 
+
+
         rvList.adapter = adapter
         rvList.layoutManager = LinearLayoutManager (this)
         adapter.submitList(contacts)
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         ivList.setOnClickListener{
             rvList.layoutManager = LinearLayoutManager(this)
         }
+        adapter.setOnClickListener { Contac -> }
 
     }
 }

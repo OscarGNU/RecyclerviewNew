@@ -19,23 +19,38 @@ class ContactListAdapter:
         return  ContactViewHolder(view)
     }
 
+    private lateinit var onClickListener: (Contac) -> Unit
+
+
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contac = getItem(position)
-        holder.bind(contac)
+        holder.bind(contac, onClickListener)
+    }
+
+     fun setOnClickListener (onClick: (Contac) -> Unit){
+        onClickListener = onClick
     }
 
 
 
 
 
-    class ContactViewHolder(view: View) : RecyclerView.ViewHolder(view){
+
+
+    class ContactViewHolder(private val view: View, ) : RecyclerView.ViewHolder(view){
         private val tvName = view.findViewById<TextView>(R.id.tv_name)
         private val tvPhone = view.findViewById<TextView>(R.id.tv_phone)
         private val image = view.findViewById<ImageView>(R.id.imagen)
-        fun bind(contact: Contac){
+
+
+        fun bind(contact: Contac, onClick: (Contac) -> Unit){
             tvName.text = contact.name
             tvPhone.text = contact.phone
             image.setImageResource(contact.icon)
+
+            view.setOnClickListener {
+                onClick.invoke(contact)
+            }
 
         }
 

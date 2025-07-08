@@ -16,10 +16,12 @@ class ContactListAdapter:
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
+        return  ContactViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val contac = getItem(position)
+        holder.bind(contac)
     }
 
 
